@@ -432,19 +432,13 @@
     background: linear-gradient(135deg, #13161c 0%, #0d0f12 100%);
     border: 1px solid var(--border-subtle);
     border-radius: var(--radius-lg);
-    padding: 50px 44px;
-    display: grid;
-    grid-template-columns: 1fr;
-    gap: 36px;
+    padding: 48px;
+    display: block;
     position: relative;
     overflow: hidden;
-}
-
-@media (min-width: 900px) {
-    .restorer-card {
-        grid-template-columns: 1.4fr 1fr;
-        align-items: center;
-    }
+    box-shadow: 0 16px 36px rgba(0, 0, 0, 0.7);
+    width: 100%;
+    box-sizing: border-box;
 }
 
 .restorer-card::after {
@@ -895,18 +889,20 @@ textarea.form-control {
 
 
 
-/* Founder Portrait & Layout in Option 1 */
+
+/* Restorer 2-Column Balanced Architecture */
 .restorer-grid {
     display: grid;
     grid-template-columns: 1fr;
     gap: 36px;
-    align-items: start;
+    width: 100%;
 }
 
-@media (min-width: 992px) {
+@media (min-width: 960px) {
     .restorer-grid {
-        grid-template-columns: 360px 1fr;
-        gap: 48px;
+        grid-template-columns: 360px 1fr !important;
+        gap: 52px !important;
+        align-items: start !important;
     }
 }
 
@@ -914,6 +910,7 @@ textarea.form-control {
     display: flex;
     flex-direction: column;
     gap: 16px;
+    width: 100%;
 }
 
 .founder-portrait-frame {
@@ -923,7 +920,8 @@ textarea.form-control {
     background: #0d0f14;
     border: 1px solid rgba(255, 107, 53, 0.35);
     box-shadow: 0 16px 40px rgba(0, 0, 0, 0.7), 0 0 25px rgba(255, 107, 53, 0.15);
-    height: 440px;
+    height: 400px;
+    width: 100%;
 }
 
 .founder-img {
@@ -946,7 +944,7 @@ textarea.form-control {
     display: inline-flex;
     align-items: center;
     gap: 8px;
-    background: rgba(13, 15, 18, 0.9);
+    background: rgba(13, 15, 18, 0.92);
     border: 1px solid rgba(255, 107, 53, 0.45);
     padding: 6px 14px;
     border-radius: var(--radius-full);
@@ -963,7 +961,7 @@ textarea.form-control {
     bottom: 16px;
     left: 16px;
     right: 16px;
-    background: linear-gradient(180deg, rgba(16, 18, 24, 0.75) 0%, rgba(13, 15, 20, 0.95) 100%);
+    background: linear-gradient(180deg, rgba(16, 18, 24, 0.8) 0%, rgba(13, 15, 20, 0.96) 100%);
     border: 1px solid rgba(255, 255, 255, 0.1);
     padding: 10px 16px;
     border-radius: var(--radius-sm);
@@ -990,6 +988,7 @@ textarea.form-control {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
     gap: 10px;
+    width: 100%;
 }
 
 .quick-cred-item {
@@ -1014,4 +1013,35 @@ textarea.form-control {
     color: var(--text-muted);
     margin-top: 2px;
     letter-spacing: 0.02em;
+}
+
+.restorer-content-col {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    width: 100%;
+}
+
+.restorer-credentials-list {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    margin-top: 28px;
+    width: 100%;
+}
+
+.cred-row {
+    background: rgba(255, 255, 255, 0.03);
+    border: 1px solid var(--border-subtle);
+    border-radius: var(--radius-md);
+    padding: 18px 22px;
+    display: flex;
+    align-items: flex-start;
+    gap: 16px;
+    transition: var(--transition);
+}
+
+.cred-row:hover {
+    border-color: rgba(255, 107, 53, 0.4);
+    background: rgba(255, 107, 53, 0.04);
 }
