@@ -593,3 +593,87 @@
     }
 }
 
+
+
+/* Founder Portrait & Layout in Option 2 */
+@media (min-width: 1024px) {
+    .founder-profile-grid {
+        grid-template-columns: 330px 1.4fr 1fr !important;
+        align-items: start !important;
+    }
+}
+
+@media (min-width: 769px) and (max-width: 1023px) {
+    .founder-profile-grid {
+        grid-template-columns: 1fr 1fr !important;
+    }
+    .founder-portrait-col-opt2 {
+        grid-column: 1 / -1;
+    }
+}
+
+.executive-portrait-frame {
+    position: relative;
+    border-radius: var(--radius-md);
+    overflow: hidden;
+    background: #0f1117;
+    border: 1px solid rgba(255, 255, 255, 0.12);
+    box-shadow: 0 16px 40px rgba(0, 0, 0, 0.7);
+    height: 440px;
+}
+
+.executive-founder-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center 15%;
+    display: block;
+    filter: grayscale(14%) contrast(105%);
+    transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1), filter 0.4s ease;
+}
+
+.executive-portrait-frame:hover .executive-founder-img {
+    transform: scale(1.03);
+    filter: grayscale(0%) contrast(100%);
+}
+
+.executive-portrait-tag {
+    position: absolute;
+    top: 16px;
+    left: 16px;
+    font-family: var(--font-mono);
+    font-size: 0.72rem;
+    letter-spacing: 0.08em;
+    color: #94a3b8;
+    background: rgba(15, 17, 23, 0.88);
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    padding: 6px 14px;
+    border-radius: var(--radius-full);
+    backdrop-filter: blur(8px);
+}
+
+.executive-portrait-overlay {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    padding: 24px 20px 16px;
+    background: linear-gradient(180deg, transparent 0%, rgba(11, 13, 18, 0.95) 100%);
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+}
+
+.exec-title {
+    font-family: var(--font-heading);
+    font-size: 1.15rem;
+    font-weight: 700;
+    color: #fff;
+}
+
+.exec-subtitle {
+    font-family: var(--font-mono);
+    font-size: 0.75rem;
+    color: var(--accent-fire);
+    line-height: 1.4;
+}

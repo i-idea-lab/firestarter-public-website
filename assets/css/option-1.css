@@ -893,3 +893,125 @@ textarea.form-control {
     }
 }
 
+
+
+/* Founder Portrait & Layout in Option 1 */
+.restorer-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 36px;
+    align-items: start;
+}
+
+@media (min-width: 992px) {
+    .restorer-grid {
+        grid-template-columns: 360px 1fr;
+        gap: 48px;
+    }
+}
+
+.restorer-portrait-col {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+}
+
+.founder-portrait-frame {
+    position: relative;
+    border-radius: var(--radius-md);
+    overflow: hidden;
+    background: #0d0f14;
+    border: 1px solid rgba(255, 107, 53, 0.35);
+    box-shadow: 0 16px 40px rgba(0, 0, 0, 0.7), 0 0 25px rgba(255, 107, 53, 0.15);
+    height: 440px;
+}
+
+.founder-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center 15%;
+    display: block;
+    transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.founder-portrait-frame:hover .founder-img {
+    transform: scale(1.04);
+}
+
+.portrait-telemetry-badge {
+    position: absolute;
+    top: 16px;
+    left: 16px;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background: rgba(13, 15, 18, 0.9);
+    border: 1px solid rgba(255, 107, 53, 0.45);
+    padding: 6px 14px;
+    border-radius: var(--radius-full);
+    font-family: var(--font-mono);
+    font-size: 0.72rem;
+    font-weight: 600;
+    color: var(--accent-spark);
+    letter-spacing: 0.08em;
+    backdrop-filter: blur(10px);
+}
+
+.portrait-caption-pill {
+    position: absolute;
+    bottom: 16px;
+    left: 16px;
+    right: 16px;
+    background: linear-gradient(180deg, rgba(16, 18, 24, 0.75) 0%, rgba(13, 15, 20, 0.95) 100%);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    padding: 10px 16px;
+    border-radius: var(--radius-sm);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    backdrop-filter: blur(12px);
+}
+
+.portrait-caption-pill .name {
+    font-family: var(--font-heading);
+    font-weight: 700;
+    font-size: 0.95rem;
+    color: #fff;
+}
+
+.portrait-caption-pill .role {
+    font-family: var(--font-mono);
+    font-size: 0.75rem;
+    color: var(--accent-fire);
+}
+
+.founder-quick-creds {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 10px;
+}
+
+.quick-cred-item {
+    background: rgba(255, 255, 255, 0.03);
+    border: 1px solid rgba(255, 107, 53, 0.2);
+    border-radius: var(--radius-sm);
+    padding: 10px 8px;
+    text-align: center;
+}
+
+.quick-cred-val {
+    display: block;
+    font-family: var(--font-mono);
+    font-size: 0.88rem;
+    font-weight: 700;
+    color: var(--accent-fire);
+}
+
+.quick-cred-lbl {
+    display: block;
+    font-size: 0.68rem;
+    color: var(--text-muted);
+    margin-top: 2px;
+    letter-spacing: 0.02em;
+}
