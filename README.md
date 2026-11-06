@@ -18,7 +18,8 @@ Both versions are built with **standard HTML5, CSS3, vanilla JavaScript, and GSA
 ### Option 1: High-Octane / Automotive Ignition Edition (`option-1.html`)
 * **Concept:** Blends the relentless precision of classic car restoration with brand building, tech horsepower, and high-frequency production.
 * **Key Features:**
-  * **Push-to-Start Tactile Ignition Switch:** An analog knurled starter button that triggers an explosive radial spark shower on canvas and a synthetic combustion rumble via the Web Audio API.
+  * **Push-to-Start Tactile Ignition Switch:** An analog knurled starter button that triggers an authentic 5.0-second V8 engine cold-start and rev audio (v8_engine_start.mp3) with glowing ember active state and canvas sparks.
+  * **01 // The Workshop (Inside The Physical Engine Room):** A curated 4-bay studio gallery showcasing Firestarter's Mumbai headquarters (open studio floor, creative strategy lab, collaborative war room, executive suite) with interactive lightbox and mobile swipe carousel.
   * **The 4 Cylinders of Capability:**
     1. *Cylinder 01:* Chassis & Blueprint (Brand Definition & Positioning)
     2. *Cylinder 02:* High-Compression Craft (Integrated Creative & Narrative)
@@ -31,6 +32,7 @@ Both versions are built with **standard HTML5, CSS3, vanilla JavaScript, and GSA
 * **Concept:** 100% corporate, sleek Swiss-style minimalism, completely free of automotive metaphors.
 * **Key Features:**
   * **Sophisticated Luxury Editorial:** High-contrast obsidian dark palette with glowing ember accents and crisp typographic hierarchy.
+  * **01 // The Atelier (Spatial Architecture & Physical Infrastructure):** Architectural gallery layout featuring Firestarter's Mumbai studio spaces with full-screen lightbox modal and mobile touch swipe.
   * **The 4 Strategic Pillars:** Brand Definition, Omnichannel Integrated Creative, Real-Time 3D & Spatial Computing, and AI Newsroom.
   * **Global Tech Alliance Banner:** Highlighting the strategic partnership with **MONKEYWAY GmbH (Munich)**, powering 3D cloud-streaming experiences for enterprise luxury brands.
   * **Executive Leadership & Pedigree:** Focus on Rayo's strategic board advisory, Grand Jury credentials, and direct founder-to-founder collaboration without agency bureaucracy.
