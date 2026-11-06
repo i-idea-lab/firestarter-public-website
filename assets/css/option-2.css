@@ -492,3 +492,104 @@
         word-break: break-all !important;
     }
 }
+
+/* ==========================================================================
+   OPTION 2: THE ATELIER GALLERY
+   ========================================================================== */
+
+.atelier-section {
+    padding: 85px 0 65px;
+    position: relative;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+    background: radial-gradient(circle at 50% 0%, rgba(56, 189, 248, 0.04) 0%, transparent 65%);
+}
+
+.atelier-gallery {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 24px;
+    margin-top: 38px;
+}
+
+.atelier-photo-card {
+    position: relative;
+    border-radius: var(--radius-md);
+    overflow: hidden;
+    background: #0f1117;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    box-shadow: 0 14px 34px rgba(0, 0, 0, 0.65);
+    cursor: pointer;
+    transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1), border-color 0.4s ease, box-shadow 0.4s ease;
+    height: 310px;
+}
+
+.atelier-photo-card.atelier-card-featured {
+    grid-column: 1 / -1;
+    height: clamp(340px, 36vw, 470px);
+}
+
+.atelier-photo-card .office-img {
+    filter: grayscale(15%) contrast(105%);
+}
+
+.atelier-photo-card .photo-badge {
+    color: #94a3b8;
+    background: rgba(15, 17, 23, 0.9);
+    border-color: rgba(255, 255, 255, 0.16);
+}
+
+.atelier-photo-card:hover {
+    transform: translateY(-4px);
+    border-color: rgba(255, 255, 255, 0.35);
+    box-shadow: 0 20px 48px rgba(0, 0, 0, 0.85), 0 0 28px rgba(56, 189, 248, 0.16);
+}
+
+.atelier-photo-card:hover .office-img {
+    transform: scale(1.04);
+    filter: grayscale(0%) contrast(100%);
+}
+
+.atelier-photo-card:hover .photo-expand-btn {
+    background: #fff;
+    color: #000;
+    opacity: 1;
+    transform: scale(1.08);
+}
+
+@media (max-width: 768px) {
+    .atelier-section {
+        padding: 55px 0 35px !important;
+    }
+    
+    .atelier-gallery {
+        display: flex !important;
+        flex-direction: row !important;
+        overflow-x: auto !important;
+        scroll-snap-type: x mandatory !important;
+        -webkit-overflow-scrolling: touch !important;
+        gap: 14px !important;
+        padding: 8px 16px 20px 16px !important;
+        margin: 18px -16px 0 -16px !important;
+        scrollbar-width: none !important;
+    }
+    
+    .atelier-gallery::-webkit-scrollbar {
+        display: none !important;
+    }
+    
+    .atelier-photo-card,
+    .atelier-photo-card.atelier-card-featured {
+        flex: 0 0 86% !important;
+        max-width: 86% !important;
+        scroll-snap-align: center !important;
+        height: 320px !important;
+    }
+    
+    .photo-desc {
+        display: -webkit-box;
+        -webkit-line-clamp: 2;
+        -webkit-box-orient: vertical;
+        overflow: hidden;
+    }
+}
+

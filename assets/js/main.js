@@ -11,6 +11,8 @@ document.addEventListener('DOMContentLoaded', () => {
     initSwitcher();
     initContactForm();
     initCylinderCarousel();
+    initOfficeGalleryCarousel();
+    initPhotoLightbox();
 });
 
 // Initialize GSAP & ScrollTrigger animations
@@ -55,6 +57,21 @@ function initGSAP() {
 
     // 2. ScrollTrigger on Sections & Cards (Always maintain visibility)
     if (typeof ScrollTrigger !== 'undefined') {
+        // Photo Gallery Cards (Fade and slight stagger on scroll)
+        gsap.from('.workshop-photo-card, .atelier-photo-card', {
+            scrollTrigger: {
+                trigger: '#workshop, #atelier, .workshop-gallery, .atelier-gallery',
+                start: 'top 90%',
+                once: true
+            },
+            y: 25,
+            opacity: 0.35,
+            duration: 0.7,
+            stagger: 0.1,
+            ease: 'power2.out',
+            clearProps: 'all'
+        });
+
         // Fade in manifesto quote
         gsap.from('.manifesto-text', {
             scrollTrigger: {
@@ -371,4 +388,177 @@ function initCylinderCarousel() {
     });
 
     startAutoSwipe();
+}
+
+/**
+ * Office Photo Gallery Carousel for Mobile
+ * Provides smooth horizontal touch swipe, auto-advance, and indicator sync
+ */
+function initOfficeGalleryCarousel() {
+    const galleryConfigs = [
+        { gridId: 'workshop-gallery', dotsId: 'workshop-gallery-dots', cardClass: '.workshop-photo-card' },
+        { gridId: 'atelier-gallery', dotsId: 'atelier-gallery-dots', cardClass: '.atelier-photo-card' }
+    ];
+
+    galleryConfigs.forEach(cfg => {
+        const grid = document.getElementById(cfg.gridId);
+        const dotsContainer = document.getElementById(cfg.dotsId);
+        if (!grid || !dotsContainer) return;
+
+        const dots = dotsContainer.querySelectorAll('.gallery-dot');
+        let currentIndex = 0;
+        let isUserInteracting = false;
+        let autoSwipeTimer = null;
+        let resumeTimer = null;
+
+        function getCards() {
+            return grid.querySelectorAll(cfg.cardClass);
+        }
+
+        function scrollToIndex(idx, smooth = true) {
+            const cards = getCards();
+            if (!cards.length || idx < 0 || idx >= cards.length) return;
+            const targetCard = cards[idx];
+            const scrollLeftPos = targetCard.offsetLeft - grid.offsetLeft - 16;
+
+            grid.scrollTo({
+                left: Math.max(0, scrollLeftPos),
+                behavior: smooth ? 'smooth' : 'auto'
+            });
+
+            currentIndex = idx;
+            updateDots(currentIndex);
+        }
+
+        function updateDots(idx) {
+            dots.forEach((dot, i) => {
+                if (i === idx) {
+                    dot.classList.add('active');
+                } else {
+                    dot.classList.remove('active');
+                }
+            });
+        }
+
+        function startAutoSwipe() {
+            if (autoSwipeTimer) clearInterval(autoSwipeTimer);
+            autoSwipeTimer = setInterval(() => {
+                if (window.innerWidth <= 768 && !isUserInteracting) {
+                    const cards = getCards();
+                    if (cards.length > 1) {
+                        const nextIndex = (currentIndex + 1) % cards.length;
+                        scrollToIndex(nextIndex, true);
+                    }
+                }
+            }, 3500);
+        }
+
+        function pauseAutoSwipe() {
+            isUserInteracting = true;
+            if (resumeTimer) clearTimeout(resumeTimer);
+            resumeTimer = setTimeout(() => {
+                isUserInteracting = false;
+            }, 5000);
+        }
+
+        grid.addEventListener('touchstart', pauseAutoSwipe, { passive: true });
+        grid.addEventListener('touchmove', pauseAutoSwipe, { passive: true });
+        grid.addEventListener('mousedown', pauseAutoSwipe);
+
+        grid.addEventListener('scroll', () => {
+            if (window.innerWidth > 768) return;
+            const cards = getCards();
+            if (!cards.length) return;
+
+            const scrollCenter = grid.scrollLeft + grid.clientWidth / 2;
+            let closestIndex = 0;
+            let minDistance = Infinity;
+
+            cards.forEach((card, idx) => {
+                const cardCenter = card.offsetLeft - grid.offsetLeft + card.clientWidth / 2;
+                const dist = Math.abs(scrollCenter - cardCenter);
+                if (dist < minDistance) {
+                    minDistance = dist;
+                    closestIndex = idx;
+                }
+            });
+
+            if (closestIndex !== currentIndex) {
+                currentIndex = closestIndex;
+                updateDots(currentIndex);
+            }
+        }, { passive: true });
+
+        dots.forEach(dot => {
+            dot.addEventListener('click', () => {
+                pauseAutoSwipe();
+                const idx = parseInt(dot.getAttribute('data-index') || '0', 10);
+                scrollToIndex(idx, true);
+            });
+        });
+
+        startAutoSwipe();
+    });
+}
+
+/**
+ * Photo Lightbox Modal
+ * Displays high-resolution full screen image with caption
+ */
+function initPhotoLightbox() {
+    const lightbox = document.getElementById('photo-lightbox');
+    if (!lightbox) return;
+
+    const lightboxImg = document.getElementById('lightbox-img');
+    const lightboxCaption = document.getElementById('lightbox-caption');
+    const closeBtn = lightbox.querySelector('.lightbox-close');
+    const backdrop = lightbox.querySelector('.lightbox-backdrop');
+
+    function openLightbox(src, caption) {
+        if (!src) return;
+        lightboxImg.src = src;
+        lightboxImg.alt = caption || 'Firestarter Office Photo';
+        if (lightboxCaption) {
+            lightboxCaption.textContent = caption || '';
+            lightboxCaption.style.display = caption ? 'inline-block' : 'none';
+        }
+        lightbox.classList.add('active');
+        lightbox.setAttribute('aria-hidden', 'false');
+        document.body.style.overflow = 'hidden';
+    }
+
+    function closeLightbox() {
+        lightbox.classList.remove('active');
+        lightbox.setAttribute('aria-hidden', 'true');
+        document.body.style.overflow = '';
+        setTimeout(() => {
+            if (!lightbox.classList.contains('active')) {
+                lightboxImg.src = '';
+            }
+        }, 300);
+    }
+
+    // Attach click listeners to all photo cards
+    const photoCards = document.querySelectorAll('.workshop-photo-card, .atelier-photo-card');
+    photoCards.forEach(card => {
+        card.addEventListener('click', (e) => {
+            const imgSrc = card.getAttribute('data-img-src') || card.querySelector('img')?.src;
+            const caption = card.getAttribute('data-caption') || card.querySelector('.photo-title')?.textContent;
+            openLightbox(imgSrc, caption);
+        });
+    });
+
+    if (closeBtn) {
+        closeBtn.addEventListener('click', closeLightbox);
+    }
+
+    if (backdrop) {
+        backdrop.addEventListener('click', closeLightbox);
+    }
+
+    document.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape' && lightbox.classList.contains('active')) {
+            closeLightbox();
+        }
+    });
 }
