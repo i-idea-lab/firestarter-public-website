@@ -13,6 +13,7 @@ document.addEventListener('DOMContentLoaded', () => {
     initCylinderCarousel();
     initProjectsShowcase();
     initClientsCarousel();
+    initMobileNav();
     initOfficeGalleryCarousel();
     initPhotoLightbox();
 });
@@ -710,4 +711,41 @@ function initClientsCarousel() {
             track.style.transform = `translateX(${manualOffset}px)`;
         });
     }
+}
+
+
+/* ==========================================================================
+   MOBILE NAVIGATION DRAWER CONTROLLER
+   ========================================================================== */
+
+function initMobileNav() {
+    const hamburger = document.getElementById('nav-hamburger');
+    const navLinks = document.getElementById('nav-links');
+
+    if (!hamburger || !navLinks) return;
+
+    hamburger.addEventListener('click', (e) => {
+        e.stopPropagation();
+        const isOpen = navLinks.classList.toggle('is-open');
+        hamburger.classList.toggle('is-active', isOpen);
+        hamburger.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
+    });
+
+    // Close on any link click
+    navLinks.querySelectorAll('a').forEach(link => {
+        link.addEventListener('click', () => {
+            navLinks.classList.remove('is-open');
+            hamburger.classList.remove('is-active');
+            hamburger.setAttribute('aria-expanded', 'false');
+        });
+    });
+
+    // Close on clicking outside
+    document.addEventListener('click', (e) => {
+        if (!navLinks.contains(e.target) && !hamburger.contains(e.target)) {
+            navLinks.classList.remove('is-open');
+            hamburger.classList.remove('is-active');
+            hamburger.setAttribute('aria-expanded', 'false');
+        }
+    });
 }
