@@ -1092,9 +1092,13 @@ section {
     margin: 8px 0 10px;
 }
 
+.clients-title-group {
+    flex: 1;
+}
+
 .clients-title-group p {
     color: var(--text-secondary);
-    max-width: 620px;
+    max-width: 100%;
     font-size: 0.98rem;
     line-height: 1.55;
 }
