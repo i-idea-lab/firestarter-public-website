@@ -528,108 +528,66 @@
     margin-top: 2px;
 }
 
-/* Contact / Pit Stop */
-.contact-pitstop {
-    background: #0b0c10;
+/* Contact / Pit Stop (Centered Executive Layout) */
+.pitstop-contact-box,
+.executive-contact-box {
+    background: #0d0f14;
     border: 1px solid var(--border-subtle);
     border-radius: var(--radius-lg);
-    padding: 60px 48px;
-    display: grid;
-    grid-template-columns: 1fr;
-    gap: 40px;
+    padding: 70px 50px;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
 }
 
-@media (min-width: 860px) {
-    .contact-pitstop {
-        grid-template-columns: 1fr 1fr;
-    }
+.pitstop-contact-box::after,
+.executive-contact-box::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 300px;
+    height: 150px;
+    background: radial-gradient(circle, rgba(255, 107, 53, 0.18) 0%, transparent 70%);
+    pointer-events: none;
 }
 
-.contact-info-col h3 {
+.pitstop-contact-box h2,
+.executive-contact-box h2 {
     font-family: var(--font-heading);
-    font-size: 2rem;
+    font-size: clamp(2rem, 4vw, 3.2rem);
     color: #fff;
     margin-bottom: 16px;
 }
 
-.contact-info-col p {
+.pitstop-contact-box p,
+.executive-contact-box p {
     color: var(--text-secondary);
-    font-size: 1.05rem;
-    line-height: 1.7;
-    margin-bottom: 30px;
+    font-size: 1.15rem;
+    max-width: 680px;
+    margin: 0 auto 36px;
+    line-height: 1.6;
 }
 
-.direct-email-card {
-    background: rgba(255, 107, 53, 0.08);
-    border: 1px solid rgba(255, 107, 53, 0.3);
-    border-radius: var(--radius-md);
-    padding: 20px 24px;
-    display: flex;
+.email-highlight-btn {
+    display: inline-flex;
     align-items: center;
-    justify-content: space-between;
-    gap: 16px;
-    text-decoration: none;
-    transition: var(--transition);
-}
-
-.direct-email-card:hover {
-    background: rgba(255, 107, 53, 0.16);
-    border-color: var(--accent-fire);
-    transform: translateY(-2px);
-}
-
-.email-label {
-    font-family: var(--font-mono);
-    font-size: 0.72rem;
-    color: var(--accent-amber);
-    text-transform: uppercase;
-    letter-spacing: 0.08em;
-}
-
-.email-address {
+    gap: 12px;
+    background: linear-gradient(135deg, var(--accent-fire) 0%, var(--accent-orange) 100%);
+    color: #fff;
     font-size: 1.1rem;
     font-weight: 700;
-    color: #fff;
-    margin-top: 4px;
-}
-
-/* Input Form */
-.form-group {
-    margin-bottom: 20px;
-}
-
-.form-group label {
-    display: block;
-    font-family: var(--font-mono);
-    font-size: 0.75rem;
-    text-transform: uppercase;
-    letter-spacing: 0.08em;
-    color: var(--text-muted);
-    margin-bottom: 8px;
-}
-
-.form-control {
-    width: 100%;
-    background: rgba(255, 255, 255, 0.03);
-    border: 1px solid var(--border-subtle);
-    border-radius: var(--radius-sm);
-    padding: 14px 16px;
-    color: #fff;
-    font-family: var(--font-body);
-    font-size: 0.95rem;
+    padding: 18px 38px;
+    border-radius: var(--radius-full);
+    text-decoration: none;
+    box-shadow: 0 8px 30px rgba(255, 107, 53, 0.4);
     transition: var(--transition);
 }
 
-.form-control:focus {
-    outline: none;
-    border-color: var(--accent-fire);
-    background: rgba(255, 107, 53, 0.04);
-    box-shadow: 0 0 16px rgba(255, 107, 53, 0.2);
-}
-
-textarea.form-control {
-    min-height: 120px;
-    resize: vertical;
+.email-highlight-btn:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 12px 40px rgba(255, 107, 53, 0.6);
 }
 
 /* Indicators Hidden by Default on Desktop */
@@ -737,51 +695,23 @@ textarea.form-control {
     }
 
     /* 2. Contact Section Mobile Fixes (Zero Horizontal Overflow) */
-    .contact-pitstop {
-        padding: 32px 18px !important;
-        width: 100% !important;
-        max-width: 100% !important;
-        box-sizing: border-box !important;
-        border-radius: var(--radius-md) !important;
-        overflow: hidden !important;
-        gap: 30px !important;
+    .pitstop-contact-box,
+    .executive-contact-box {
+        padding: 36px 18px !important;
     }
 
-    .contact-info-col,
-    .contact-form-col,
-    #contact-form {
-        width: 100% !important;
-        max-width: 100% !important;
-        box-sizing: border-box !important;
+    .pitstop-contact-box h2,
+    .executive-contact-box h2 {
+        font-size: 1.8rem !important;
     }
 
-    .form-group {
-        width: 100% !important;
-        max-width: 100% !important;
-        box-sizing: border-box !important;
-        margin-bottom: 16px !important;
-    }
-
-    .form-control,
-    textarea.form-control {
-        width: 100% !important;
-        max-width: 100% !important;
-        box-sizing: border-box !important;
-        display: block !important;
-    }
-
-    .direct-email-card {
-        padding: 16px 14px !important;
-        width: 100% !important;
-        max-width: 100% !important;
-        box-sizing: border-box !important;
-        flex-direction: column !important;
-        align-items: flex-start !important;
-        gap: 8px !important;
-    }
-
-    .email-address {
+    .email-highlight-btn {
+        padding: 14px 20px !important;
         font-size: 0.95rem !important;
+        width: 100% !important;
+        max-width: 100% !important;
+        box-sizing: border-box !important;
+        justify-content: center !important;
         word-break: break-all !important;
     }
 
