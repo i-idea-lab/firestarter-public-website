@@ -12,6 +12,8 @@ class SparkEngine {
         this.burstParticles = [];
         this.shockwaves = [];
         this.maxAmbient = 45;
+        // Reach multiplier: 1.15 = 15% higher vertical rise towards the top of the viewport
+        this.sparkReachMultiplier = 1.15;
         this.mouseX = window.innerWidth / 2;
         this.mouseY = window.innerHeight / 2;
         this.isHoveringHero = false;
@@ -53,14 +55,18 @@ class SparkEngine {
     }
 
     createAmbientParticle(randomY = false) {
+        // Balanced calculation for reach extension (+15% vertical travel before fade-out)
+        const speedBoost = 1 + (this.sparkReachMultiplier - 1) * 0.5;
+        const decayReduction = 1 / (1 + (this.sparkReachMultiplier - 1) * 0.5);
+
         return {
             x: Math.random() * this.width,
             y: randomY ? Math.random() * this.height : this.height + 10 + Math.random() * 20,
             size: Math.random() * 2.2 + 0.8,
-            speedY: -(Math.random() * 1.2 + 0.5),
+            speedY: -(Math.random() * 1.2 + 0.5) * speedBoost,
             speedX: (Math.random() - 0.5) * 0.8,
             alpha: Math.random() * 0.7 + 0.2,
-            decay: Math.random() * 0.003 + 0.0015,
+            decay: (Math.random() * 0.003 + 0.0015) * decayReduction,
             color: this.getRandomSparkColor(),
             wobble: Math.random() * Math.PI * 2,
             wobbleSpeed: Math.random() * 0.04 + 0.01
