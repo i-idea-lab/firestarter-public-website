@@ -1179,8 +1179,8 @@ section {
 
 /* Logo Card */
 .client-logo-card {
-    flex: 0 0 240px;
-    height: 120px;
+    flex: 0 0 230px;
+    height: 100px;
     background: rgba(255, 255, 255, 0.025);
     border: 1px solid rgba(255, 255, 255, 0.08);
     border-radius: var(--radius-md);
@@ -1202,8 +1202,8 @@ section {
 }
 
 .client-logo-img {
-    width: 170px;
-    height: 48px;
+    width: 175px;
+    height: 52px;
     object-fit: contain;
     filter: brightness(0.96) contrast(104%);
     transition: filter 0.35s ease, transform 0.35s ease;
@@ -1238,13 +1238,13 @@ section {
         padding: 52px 0 44px;
     }
     .client-logo-card {
-        flex: 0 0 190px;
-        height: 105px;
-        padding: 12px 14px;
+        flex: 0 0 180px;
+        height: 80px;
+        padding: 10px 14px;
     }
     .client-logo-img {
         width: 140px;
-        height: 40px;
+        height: 42px;
     }
     .clients-marquee-wrapper {
         -webkit-mask-image: linear-gradient(to right, transparent 0%, black 5%, black 95%, transparent 100%);
