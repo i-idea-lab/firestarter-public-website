@@ -1045,3 +1045,34 @@ textarea.form-control {
     border-color: rgba(255, 107, 53, 0.4);
     background: rgba(255, 107, 53, 0.04);
 }
+
+
+/* Option 1: Projects Section Styling */
+#projects.opt1-projects .project-tab-btn.active,
+.hero-opt1 ~ #projects .project-tab-btn.active {
+    background: rgba(255, 107, 53, 0.16) !important;
+    border-color: var(--accent-fire) !important;
+    color: var(--accent-spark) !important;
+    box-shadow: 0 0 16px rgba(255, 107, 53, 0.25) !important;
+}
+
+#projects.opt1-projects .project-screenshot-frame,
+.hero-opt1 ~ #projects .project-screenshot-frame {
+    border-color: rgba(255, 107, 53, 0.3) !important;
+}
+
+#projects.opt1-projects .project-screenshot-frame:hover,
+.hero-opt1 ~ #projects .project-screenshot-frame:hover {
+    border-color: var(--accent-fire) !important;
+    box-shadow: 0 20px 50px rgba(0, 0, 0, 0.9), 0 0 30px rgba(255, 107, 53, 0.28) !important;
+}
+
+#projects.opt1-projects .badge-val,
+.hero-opt1 ~ #projects .badge-val {
+    color: var(--accent-spark) !important;
+}
+
+#projects.opt1-projects .metric-val,
+.hero-opt1 ~ #projects .metric-val {
+    color: var(--accent-fire) !important;
+}

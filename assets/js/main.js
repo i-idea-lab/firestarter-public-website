@@ -11,6 +11,7 @@ document.addEventListener('DOMContentLoaded', () => {
     initSwitcher();
     initContactForm();
     initCylinderCarousel();
+    initProjectsShowcase();
     initOfficeGalleryCarousel();
     initPhotoLightbox();
 });
@@ -539,7 +540,7 @@ function initPhotoLightbox() {
     }
 
     // Attach click listeners to all photo cards
-    const photoCards = document.querySelectorAll('.workshop-photo-card, .atelier-photo-card');
+    const photoCards = document.querySelectorAll('.workshop-photo-card, .atelier-photo-card, .project-screenshot-frame');
     photoCards.forEach(card => {
         card.addEventListener('click', (e) => {
             const imgSrc = card.getAttribute('data-img-src') || card.querySelector('img')?.src;
@@ -561,4 +562,94 @@ function initPhotoLightbox() {
             closeLightbox();
         }
     });
+}
+
+
+/**
+ * Projects Showcase Slider & Tab Controller
+ */
+function initProjectsShowcase() {
+    const projectsSection = document.getElementById('projects');
+    if (!projectsSection) return;
+
+    const tabs = projectsSection.querySelectorAll('.project-tab-btn');
+    const slides = projectsSection.querySelectorAll('.project-slide');
+    const dots = projectsSection.querySelectorAll('.proj-dot');
+    const prevBtns = projectsSection.querySelectorAll('.prev-proj');
+    const nextBtns = projectsSection.querySelectorAll('.next-proj');
+
+    let currentIdx = 0;
+    const totalSlides = slides.length;
+    if (totalSlides === 0) return;
+
+    function goToSlide(idx) {
+        currentIdx = (idx + totalSlides) % totalSlides;
+        
+        slides.forEach((slide, i) => {
+            if (i === currentIdx) {
+                slide.classList.add('active');
+            } else {
+                slide.classList.remove('active');
+            }
+        });
+
+        tabs.forEach((tab, i) => {
+            if (i === currentIdx) {
+                tab.classList.add('active');
+            } else {
+                tab.classList.remove('active');
+            }
+        });
+
+        dots.forEach((dot, i) => {
+            if (i === currentIdx) {
+                dot.classList.add('active');
+            } else {
+                dot.classList.remove('active');
+            }
+        });
+    }
+
+    tabs.forEach(tab => {
+        tab.addEventListener('click', () => {
+            const idx = parseInt(tab.getAttribute('data-project-idx') || '0', 10);
+            goToSlide(idx);
+        });
+    });
+
+    dots.forEach(dot => {
+        dot.addEventListener('click', () => {
+            const idx = parseInt(dot.getAttribute('data-index') || '0', 10);
+            goToSlide(idx);
+        });
+    });
+
+    prevBtns.forEach(btn => {
+        btn.addEventListener('click', () => goToSlide(currentIdx - 1));
+    });
+
+    nextBtns.forEach(btn => {
+        btn.addEventListener('click', () => goToSlide(currentIdx + 1));
+    });
+
+    // Touch swipe support for mobile
+    const stage = document.getElementById('project-stage-container');
+    if (stage) {
+        let touchStartX = 0;
+        let touchEndX = 0;
+
+        stage.addEventListener('touchstart', (e) => {
+            touchStartX = e.changedTouches[0].screenX;
+        }, { passive: true });
+
+        stage.addEventListener('touchend', (e) => {
+            touchEndX = e.changedTouches[0].screenX;
+            const swipeThreshold = 45;
+            if (touchEndX < touchStartX - swipeThreshold) {
+                goToSlide(currentIdx + 1);
+            } else if (touchEndX > touchStartX + swipeThreshold) {
+                goToSlide(currentIdx - 1);
+            }
+        }, { passive: true });
+    }
 }
