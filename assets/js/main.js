@@ -675,8 +675,8 @@ function initClientsCarousel() {
     const cards = track.querySelectorAll('.client-logo-card');
     if (cards.length === 0) return;
 
-    // 10 unique logos in original set
-    const totalUniqueCards = 10;
+    // 6 unique real brand logos in set
+    const totalUniqueCards = 6;
     let currentIndex = 0;
     let isTransitioning = false;
     let autoShiftTimer = null;

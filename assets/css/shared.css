@@ -1179,12 +1179,12 @@ section {
     width: 170px;
     height: 48px;
     object-fit: contain;
-    filter: brightness(0.85) grayscale(25%);
+    filter: brightness(0.96) contrast(104%);
     transition: filter 0.35s ease, transform 0.35s ease;
 }
 
 .client-logo-card:hover .client-logo-img {
-    filter: brightness(1.15) grayscale(0%);
+    filter: brightness(1.12) contrast(110%);
     transform: scale(1.04);
 }
 

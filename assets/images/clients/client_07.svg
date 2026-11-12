@@ -1,8 +1,0 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 240 70" width="240" height="70">
-  <g fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
-    <path d="M23 24 C31 20 41 20 49 24 L49 38 C49 46 36 52 36 52 C36 52 23 46 23 38 Z" fill="currentColor" fill-opacity="0.15"/>
-    <path d="M30 35 L36 41 L42 29"/>
-  </g>
-  <text x="66" y="34" font-family="'Space Grotesk', 'Syne', -apple-system, sans-serif" font-size="15.5" font-weight="700" letter-spacing="2" fill="currentColor">AETHELRED</text>
-  <text x="66" y="48" font-family="'JetBrains Mono', monospace" font-size="8.5" font-weight="500" letter-spacing="2" fill="currentColor" opacity="0.6">MOTOR WORKS</text>
-</svg>
