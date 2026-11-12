@@ -658,7 +658,7 @@ function initProjectsShowcase() {
 
 
 /* ==========================================================================
-   CLIENTS LOGO CAROUSEL CONTROLLER
+   CLIENTS LOGO CAROUSEL CONTROLLER (3-Second Auto-Shift & Left/Right Arrows)
    ========================================================================== */
 
 function initClientsCarousel() {
@@ -666,53 +666,133 @@ function initClientsCarousel() {
     if (!section) return;
 
     const track = section.querySelector('.clients-marquee-track');
-    const playPauseBtn = section.querySelector('.client-play-pause');
     const prevBtn = section.querySelector('.client-prev');
     const nextBtn = section.querySelector('.client-next');
+    const wrapper = section.querySelector('.clients-marquee-wrapper');
 
     if (!track) return;
 
-    let isPaused = false;
-    let manualOffset = 0;
+    const cards = track.querySelectorAll('.client-logo-card');
+    if (cards.length === 0) return;
 
-    if (playPauseBtn) {
-        playPauseBtn.addEventListener('click', () => {
-            isPaused = !isPaused;
-            track.classList.toggle('is-paused', isPaused);
-            playPauseBtn.textContent = isPaused ? 'Play' : 'Pause';
-            playPauseBtn.setAttribute('aria-pressed', isPaused ? 'true' : 'false');
+    // 10 unique logos in original set
+    const totalUniqueCards = 10;
+    let currentIndex = 0;
+    let isTransitioning = false;
+    let autoShiftTimer = null;
+    const SHIFT_INTERVAL = 3000; // Auto-shift every 3 seconds
+
+    function getCardStep() {
+        const firstCard = cards[0];
+        const secondCard = cards[1];
+        if (firstCard && secondCard) {
+            return secondCard.offsetLeft - firstCard.offsetLeft;
+        }
+        return (firstCard ? firstCard.offsetWidth : 240) + 22;
+    }
+
+    function updateTrackPosition(withTransition = true) {
+        const step = getCardStep();
+        if (withTransition) {
+            track.style.transition = 'transform 0.65s cubic-bezier(0.25, 1, 0.5, 1)';
+        } else {
+            track.style.transition = 'none';
+        }
+        track.style.transform = `translateX(-${currentIndex * step}px)`;
+    }
+
+    function shiftNext() {
+        if (isTransitioning) return;
+        isTransitioning = true;
+        currentIndex++;
+        updateTrackPosition(true);
+    }
+
+    function shiftPrev() {
+        if (isTransitioning) return;
+        isTransitioning = true;
+        if (currentIndex <= 0) {
+            // Seamlessly jump to the mirrored 10th card without transition, then slide to 9
+            currentIndex = totalUniqueCards;
+            updateTrackPosition(false);
+            void track.offsetWidth; // Force synchronous reflow
+        }
+        currentIndex--;
+        updateTrackPosition(true);
+    }
+
+    track.addEventListener('transitionend', () => {
+        isTransitioning = false;
+        if (currentIndex >= totalUniqueCards) {
+            // Seamlessly snap back to index 0 (identical to index 10)
+            currentIndex = 0;
+            updateTrackPosition(false);
+        }
+    });
+
+    function startAutoShift() {
+        stopAutoShift();
+        autoShiftTimer = setInterval(shiftNext, SHIFT_INTERVAL);
+    }
+
+    function stopAutoShift() {
+        if (autoShiftTimer) {
+            clearInterval(autoShiftTimer);
+            autoShiftTimer = null;
+        }
+    }
+
+    // Left and Right Arrow Navigation (resets the 3-second cycle)
+    if (nextBtn) {
+        nextBtn.addEventListener('click', () => {
+            shiftNext();
+            startAutoShift();
         });
     }
 
     if (prevBtn) {
         prevBtn.addEventListener('click', () => {
-            track.classList.add('is-paused');
-            isPaused = true;
-            if (playPauseBtn) {
-                playPauseBtn.textContent = 'Play';
-                playPauseBtn.setAttribute('aria-pressed', 'true');
-            }
-            manualOffset += 260;
-            track.style.transition = 'transform 0.4s ease';
-            track.style.transform = `translateX(${manualOffset}px)`;
+            shiftPrev();
+            startAutoShift();
         });
     }
 
-    if (nextBtn) {
-        nextBtn.addEventListener('click', () => {
-            track.classList.add('is-paused');
-            isPaused = true;
-            if (playPauseBtn) {
-                playPauseBtn.textContent = 'Play';
-                playPauseBtn.setAttribute('aria-pressed', 'true');
+    // Hover pause: pause auto-shift while cursor is on the carousel
+    if (wrapper) {
+        wrapper.addEventListener('mouseenter', stopAutoShift);
+        wrapper.addEventListener('mouseleave', startAutoShift);
+
+        // Mobile touch swipe
+        let touchStartX = 0;
+        let touchEndX = 0;
+
+        wrapper.addEventListener('touchstart', (e) => {
+            stopAutoShift();
+            touchStartX = e.changedTouches[0].screenX;
+        }, { passive: true });
+
+        wrapper.addEventListener('touchend', (e) => {
+            touchEndX = e.changedTouches[0].screenX;
+            const diff = touchStartX - touchEndX;
+            if (Math.abs(diff) > 40) {
+                if (diff > 0) {
+                    shiftNext();
+                } else {
+                    shiftPrev();
+                }
             }
-            manualOffset -= 260;
-            track.style.transition = 'transform 0.4s ease';
-            track.style.transform = `translateX(${manualOffset}px)`;
-        });
+            startAutoShift();
+        }, { passive: true });
     }
+
+    // Recalculate track position on window resize
+    window.addEventListener('resize', () => {
+        updateTrackPosition(false);
+    });
+
+    // Start auto-shifting on load
+    startAutoShift();
 }
-
 
 /* ==========================================================================
    MOBILE NAVIGATION DRAWER CONTROLLER
