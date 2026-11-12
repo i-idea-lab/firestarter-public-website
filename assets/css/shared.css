@@ -1038,3 +1038,199 @@ section {
         background: var(--accent-fire);
     }
 }
+
+
+/* ==========================================================================
+   OUR CLIENTS SECTION SHARED STYLES
+   ========================================================================== */
+
+.clients-section {
+    padding: 85px 0 75px;
+    position: relative;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+    overflow: hidden;
+}
+
+.clients-header-row {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    margin-bottom: 36px;
+}
+
+@media (min-width: 900px) {
+    .clients-header-row {
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: flex-end;
+    }
+}
+
+.clients-title-group h2 {
+    font-size: clamp(1.8rem, 3.2vw, 2.6rem);
+    font-weight: 800;
+    line-height: 1.15;
+    letter-spacing: -0.02em;
+    margin: 8px 0 10px;
+}
+
+.clients-title-group p {
+    color: var(--text-secondary);
+    max-width: 620px;
+    font-size: 0.98rem;
+    line-height: 1.55;
+}
+
+.clients-controls {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    background: rgba(255, 255, 255, 0.03);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    padding: 6px 12px;
+    border-radius: var(--radius-full);
+}
+
+.client-ctrl-btn {
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.12);
+    color: var(--text-primary);
+    cursor: pointer;
+    font-size: 0.85rem;
+    transition: all 0.25s ease;
+}
+
+.client-ctrl-btn:hover {
+    background: rgba(255, 255, 255, 0.14);
+    transform: translateY(-1px);
+}
+
+.client-ctrl-btn:active {
+    transform: translateY(0);
+}
+
+.client-play-pause {
+    width: auto;
+    padding: 0 12px;
+    border-radius: var(--radius-full);
+    font-family: var(--font-mono);
+    font-size: 0.72rem;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+}
+
+/* Marquee Carousel Container */
+.clients-marquee-wrapper {
+    position: relative;
+    width: 100%;
+    overflow: hidden;
+    padding: 15px 0;
+    -webkit-mask-image: linear-gradient(to right, transparent 0%, black 8%, black 92%, transparent 100%);
+    mask-image: linear-gradient(to right, transparent 0%, black 8%, black 92%, transparent 100%);
+}
+
+.clients-marquee-track {
+    display: flex;
+    gap: 22px;
+    width: max-content;
+    will-change: transform;
+    animation: clientScroll 42s linear infinite;
+}
+
+.clients-marquee-track.is-paused {
+    animation-play-state: paused !important;
+}
+
+.clients-marquee-wrapper:hover .clients-marquee-track {
+    animation-play-state: paused;
+}
+
+@keyframes clientScroll {
+    0% {
+        transform: translateX(0);
+    }
+    100% {
+        transform: translateX(-50%);
+    }
+}
+
+/* Logo Card */
+.client-logo-card {
+    flex: 0 0 240px;
+    height: 120px;
+    background: rgba(255, 255, 255, 0.025);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-radius: var(--radius-md);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 16px 20px;
+    text-decoration: none;
+    transition: all 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+    position: relative;
+    user-select: none;
+}
+
+.client-logo-card:hover {
+    background: rgba(255, 255, 255, 0.05);
+    transform: translateY(-4px);
+    box-shadow: 0 12px 28px rgba(0, 0, 0, 0.4);
+}
+
+.client-logo-img {
+    width: 170px;
+    height: 48px;
+    object-fit: contain;
+    filter: brightness(0.85) grayscale(25%);
+    transition: filter 0.35s ease, transform 0.35s ease;
+}
+
+.client-logo-card:hover .client-logo-img {
+    filter: brightness(1.15) grayscale(0%);
+    transform: scale(1.04);
+}
+
+.client-card-meta {
+    margin-top: 8px;
+    font-family: var(--font-mono);
+    font-size: 0.65rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--text-muted);
+    transition: color 0.3s ease;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    max-width: 100%;
+}
+
+.client-logo-card:hover .client-card-meta {
+    color: var(--text-secondary);
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .clients-section {
+        padding: 65px 0 55px;
+    }
+    .client-logo-card {
+        flex: 0 0 190px;
+        height: 105px;
+        padding: 12px 14px;
+    }
+    .client-logo-img {
+        width: 140px;
+        height: 40px;
+    }
+    .clients-marquee-wrapper {
+        -webkit-mask-image: linear-gradient(to right, transparent 0%, black 5%, black 95%, transparent 100%);
+        mask-image: linear-gradient(to right, transparent 0%, black 5%, black 95%, transparent 100%);
+    }
+}

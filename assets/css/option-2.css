@@ -776,3 +776,27 @@
 .hero-opt2 ~ #projects .proj-dot.active {
     background: #38BDF8 !important;
 }
+
+
+/* ==========================================================================
+   OPTION 2: CLIENTS SECTION THEME STYLING
+   ========================================================================== */
+
+.opt2-clients .client-logo-card {
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    background: linear-gradient(180deg, rgba(17, 23, 34, 0.6) 0%, rgba(10, 14, 22, 0.85) 100%);
+}
+
+.opt2-clients .client-logo-card:hover {
+    border-color: rgba(0, 240, 255, 0.45);
+    box-shadow: 0 14px 30px rgba(0, 0, 0, 0.6), 0 0 22px rgba(0, 240, 255, 0.14);
+}
+
+.opt2-clients .client-logo-card:hover .client-card-meta {
+    color: var(--opt2-accent);
+}
+
+.opt2-clients .client-ctrl-btn:hover {
+    border-color: var(--opt2-accent);
+    color: var(--opt2-accent);
+}

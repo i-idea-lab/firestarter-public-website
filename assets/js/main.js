@@ -12,6 +12,7 @@ document.addEventListener('DOMContentLoaded', () => {
     initContactForm();
     initCylinderCarousel();
     initProjectsShowcase();
+    initClientsCarousel();
     initOfficeGalleryCarousel();
     initPhotoLightbox();
 });
@@ -651,5 +652,62 @@ function initProjectsShowcase() {
                 goToSlide(currentIdx - 1);
             }
         }, { passive: true });
+    }
+}
+
+
+/* ==========================================================================
+   CLIENTS LOGO CAROUSEL CONTROLLER
+   ========================================================================== */
+
+function initClientsCarousel() {
+    const section = document.getElementById('clients');
+    if (!section) return;
+
+    const track = section.querySelector('.clients-marquee-track');
+    const playPauseBtn = section.querySelector('.client-play-pause');
+    const prevBtn = section.querySelector('.client-prev');
+    const nextBtn = section.querySelector('.client-next');
+
+    if (!track) return;
+
+    let isPaused = false;
+    let manualOffset = 0;
+
+    if (playPauseBtn) {
+        playPauseBtn.addEventListener('click', () => {
+            isPaused = !isPaused;
+            track.classList.toggle('is-paused', isPaused);
+            playPauseBtn.textContent = isPaused ? 'Play' : 'Pause';
+            playPauseBtn.setAttribute('aria-pressed', isPaused ? 'true' : 'false');
+        });
+    }
+
+    if (prevBtn) {
+        prevBtn.addEventListener('click', () => {
+            track.classList.add('is-paused');
+            isPaused = true;
+            if (playPauseBtn) {
+                playPauseBtn.textContent = 'Play';
+                playPauseBtn.setAttribute('aria-pressed', 'true');
+            }
+            manualOffset += 260;
+            track.style.transition = 'transform 0.4s ease';
+            track.style.transform = `translateX(${manualOffset}px)`;
+        });
+    }
+
+    if (nextBtn) {
+        nextBtn.addEventListener('click', () => {
+            track.classList.add('is-paused');
+            isPaused = true;
+            if (playPauseBtn) {
+                playPauseBtn.textContent = 'Play';
+                playPauseBtn.setAttribute('aria-pressed', 'true');
+            }
+            manualOffset -= 260;
+            track.style.transition = 'transform 0.4s ease';
+            track.style.transform = `translateX(${manualOffset}px)`;
+        });
     }
 }

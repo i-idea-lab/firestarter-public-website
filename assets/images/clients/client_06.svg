@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 240 70" width="240" height="70">
+  <g fill="none" stroke="currentColor" stroke-width="2.2" stroke-linejoin="round">
+    <path d="M36 18 L49 26 L49 44 L36 52 L23 44 L23 26 Z" fill="currentColor" fill-opacity="0.1"/>
+    <path d="M36 18 L36 52"/>
+    <path d="M23 26 L49 44"/>
+  </g>
+  <text x="66" y="34" font-family="'Space Grotesk', 'Syne', -apple-system, sans-serif" font-size="15" font-weight="700" letter-spacing="2.5" fill="currentColor">VERTEX</text>
+  <text x="66" y="48" font-family="'JetBrains Mono', monospace" font-size="8.5" font-weight="500" letter-spacing="2" fill="currentColor" opacity="0.6">CAPITAL VENTURES</text>
+</svg>

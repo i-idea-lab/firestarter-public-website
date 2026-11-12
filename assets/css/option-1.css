@@ -1076,3 +1076,27 @@ textarea.form-control {
 .hero-opt1 ~ #projects .metric-val {
     color: var(--accent-fire) !important;
 }
+
+
+/* ==========================================================================
+   OPTION 1: CLIENTS SECTION THEME STYLING
+   ========================================================================== */
+
+.opt1-clients .client-logo-card {
+    border: 1px solid rgba(255, 107, 53, 0.15);
+    background: linear-gradient(180deg, rgba(20, 24, 33, 0.8) 0%, rgba(13, 15, 20, 0.95) 100%);
+}
+
+.opt1-clients .client-logo-card:hover {
+    border-color: rgba(255, 107, 53, 0.55);
+    box-shadow: 0 14px 30px rgba(0, 0, 0, 0.7), 0 0 20px rgba(255, 107, 53, 0.18);
+}
+
+.opt1-clients .client-logo-card:hover .client-card-meta {
+    color: var(--opt1-accent);
+}
+
+.opt1-clients .client-ctrl-btn:hover {
+    border-color: var(--opt1-accent);
+    color: var(--opt1-accent);
+}
