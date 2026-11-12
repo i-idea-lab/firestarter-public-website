@@ -8,7 +8,7 @@
     display: flex;
     align-items: center;
     padding-top: 150px;
-    padding-bottom: 90px;
+    padding-bottom: 72px;
     position: relative;
     background: radial-gradient(circle at 50% 15%, rgba(255, 87, 34, 0.07) 0%, transparent 60%);
 }
@@ -423,7 +423,7 @@
 @media (max-width: 768px) {
     .hero-opt2 {
         padding-top: 110px !important;
-        padding-bottom: 60px !important;
+        padding-bottom: 48px !important;
     }
 
     .hero-title-opt2 {
@@ -501,7 +501,7 @@
    ========================================================================== */
 
 .atelier-section {
-    padding: 85px 0 65px;
+    padding: 68px 0 52px;
     position: relative;
     border-bottom: 1px solid rgba(255, 255, 255, 0.06);
     background: radial-gradient(circle at 50% 0%, rgba(56, 189, 248, 0.04) 0%, transparent 65%);
@@ -561,7 +561,7 @@
 
 @media (max-width: 768px) {
     .atelier-section {
-        padding: 55px 0 35px !important;
+        padding: 44px 0 28px !important;
     }
     
     .atelier-gallery {

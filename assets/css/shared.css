@@ -282,7 +282,7 @@ body {
 
 section {
     position: relative;
-    padding: 120px 0;
+    padding: 96px 0;
     z-index: 2;
 }
 
@@ -346,7 +346,7 @@ section {
 .site-footer {
     background: #050607;
     border-top: 1px solid var(--border-subtle);
-    padding: 50px 0;
+    padding: 40px 0;
     position: relative;
     z-index: 10;
 }
@@ -427,7 +427,7 @@ section {
 
 @media (max-width: 768px) {
     .site-footer {
-        padding: 40px 0;
+        padding: 32px 0;
     }
     .footer-wrap {
         flex-direction: column;
@@ -471,7 +471,7 @@ section {
         gap: 18px !important;
     }
     section {
-        padding: 70px 0 !important;
+        padding: 56px 0 !important;
     }
 }
 
@@ -716,7 +716,7 @@ section {
    ========================================================================== */
 
 .projects-section {
-    padding: 95px 0 75px;
+    padding: 76px 0 60px;
     position: relative;
     border-bottom: 1px solid rgba(255, 255, 255, 0.06);
 }
@@ -1063,7 +1063,7 @@ section {
    ========================================================================== */
 
 .clients-section {
-    padding: 85px 0 75px;
+    padding: 68px 0 60px;
     position: relative;
     border-bottom: 1px solid rgba(255, 255, 255, 0.06);
     overflow: hidden;
@@ -1205,7 +1205,7 @@ section {
 /* Responsive */
 @media (max-width: 768px) {
     .clients-section {
-        padding: 65px 0 55px;
+        padding: 52px 0 44px;
     }
     .client-logo-card {
         flex: 0 0 190px;
