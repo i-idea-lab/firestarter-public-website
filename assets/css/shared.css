@@ -161,7 +161,7 @@ body {
 /* Navigation */
 .site-nav {
     position: fixed;
-    top: 76px;
+    top: 20px;
     left: 0;
     width: 100%;
     z-index: 100;
@@ -169,7 +169,7 @@ body {
 }
 
 .site-nav.scrolled {
-    top: 70px;
+    top: 10px;
 }
 
 .nav-container {
@@ -421,7 +421,7 @@ section {
         box-sizing: border-box !important;
     }
     .site-nav {
-        top: 60px;
+        top: 14px;
         padding: 0 12px;
     }
     .nav-container {
@@ -430,21 +430,7 @@ section {
     .nav-logo-img {
         height: 30px !important;
     }
-    .concept-switcher-bar {
-        width: 95% !important;
-        max-width: 390px !important;
-        justify-content: center !important;
-        padding: 3px 5px !important;
-        top: 14px !important;
-    }
-    .switcher-label {
-        display: none !important;
-    }
-    .switcher-btn {
-        padding: 5px 9px !important;
-        font-size: 0.72rem !important;
-        gap: 4px !important;
-    }
+    /* Switcher bar removed */
     .nav-links {
         display: none !important;
     }
@@ -1286,7 +1272,7 @@ section {
 
     .nav-links {
         position: fixed;
-        top: 105px;
+        top: 72px;
         left: 12px;
         right: 12px;
         background: rgba(14, 16, 20, 0.97);

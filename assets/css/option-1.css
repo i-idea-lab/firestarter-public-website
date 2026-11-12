@@ -640,7 +640,7 @@ textarea.form-control {
 /* Mobile Responsive Optimizations & Swipe Carousel */
 @media (max-width: 768px) {
     .hero-opt1 {
-        padding-top: 130px !important;
+        padding-top: 110px !important;
         padding-bottom: 60px !important;
     }
 
